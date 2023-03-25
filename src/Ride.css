@@ -1,0 +1,85 @@
+.rides-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rides-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 170px);
+  grid-gap: 20px;
+}
+
+
+
+.rides-container {
+  margin-top: 50px;
+}
+
+
+
+
+.square {
+  width: 20vw; /* set the width of each square */
+  height: 20vw; /* set the height to be equal to the width */
+  background-color: #373737;
+  display: inline-block;
+}
+
+.ride {
+  background-color: #373737;
+  position: relative;
+  aspect-ratio: 1 / 1;
+}
+
+
+.zone-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5%;
+}
+
+.name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+
+.zone-name {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-size: 1rem;
+}
+
+.remaining-tickets {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  font-size: 1rem;
+}
+
+.return-time {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  font-size: 1rem;
+}
+
+/* Add title */
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
