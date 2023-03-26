@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-function Ride({ name, remaining_tickets, return_time, zone }) {
+function Ride({ name, remaining_tickets, converted_return_time, zone , selected, onSelect}) {
     const { id, name: zoneName, color } = zone;
-    const [selected, setSelected] = useState(false);
+    
   
 
   
     const handleClick = () => {
-        setSelected(!selected);
+        onSelect(id);
       };
  
   const selectedStyle = selected ? { backgroundColor: color } : {backgroundColor: '#373737'};
@@ -90,7 +90,7 @@ function Ride({ name, remaining_tickets, return_time, zone }) {
           fontFamily: 'Open Sans, sans-serif',
         }}
       >
-        {return_time}
+        {converted_return_time}
       </div>
     </div>
   );
