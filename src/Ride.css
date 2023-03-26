@@ -10,6 +10,12 @@
   grid-gap: 20px;
 }
 
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  grid-gap: 20px;
+}
+
 
 
 .rides-container {
@@ -81,5 +87,10 @@
 .title {
   text-align: center;
   margin-bottom: 20px;
+
+  
   font-size: 2rem;
 }
+
+
+
