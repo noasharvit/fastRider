@@ -11,9 +11,43 @@ export default function Rides () {
   const [rides, setRides] = useState([]);
   const [selectedRideId, setSelectedRideId] = useState(null);
   const [pin, setPin] = useState("");
+  const token = "433898df4a3e992b8411004109e4d574a90695e39e";
 
 
 
+//   const pin = "JN-8080-8080-QQ";
+//   const ride_id = 4;
+  
+  
+  
+    function postSubmition(pin, ride_id) {
+        const url = "http://fast-rider.herokuapp.com/api/v1/tickets";
+  
+        const data = new URLSearchParams();
+        data.append("pin", pin);
+        data.append("ride_id", ride_id);
+        data.append("token", token);
+        
+        const options = {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Accept": "application/json"
+            },
+            body: data
+        };
+        
+        fetch(url, options)
+            .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+            })
+            .then(json => console.log(json))
+            .catch(error => console.error(error));
+
+    }
 
   React.useEffect(() => {
     fetch('http://fast-rider.herokuapp.com/api/v1/rides?token=433898df4a3e992b8411004109e4d574a90695e39e')
@@ -45,14 +79,21 @@ export default function Rides () {
     };
   }
 
+  function isValidFormat(str) {
+    const regex = /^JN-\d{4}-\d{4}-[A-Z]{2}$/;
+    return regex.test(str);
+  }
+
   const handleRideSelect = (id) => {
     setSelectedRideId(id);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    isValidFormat(pin)? postSubmition(pin, selectedRideId) : alert("#PIN code in invalid! "); ; 
     // Implement the handle submit function here
     console.log("Pin: ", pin);
+    console.log("selectedRideId: "+ selectedRideId);
   };
   const handlePinChange = (event) => {
     setPin(event.target.value);

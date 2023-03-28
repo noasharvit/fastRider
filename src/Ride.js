@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 function Ride({ name, remaining_tickets, converted_return_time, zone , selected, onSelect}) {
     const { id, name: zoneName, color } = zone;
     
