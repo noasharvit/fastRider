@@ -1,3 +1,7 @@
+import greyClockLogo from './logos/greyClockLogo.png';
+import greyTicketLogo from './logos/greyTicketLogo.png';
+import greyArrowLogo from './logos/greyArrowLogo.png';
+
 function Ride({ name, remaining_tickets, converted_return_time, zone , selected, onSelect}) {
     const { id, name: zoneName, color } = zone;
     
@@ -55,7 +59,7 @@ function Ride({ name, remaining_tickets, converted_return_time, zone , selected,
           right: '5px',
           color: '#656565',
           fontFamily: 'Open Sans, sans-serif',
-          fontSize: '12px',
+          fontSize: '15px',
         }}
       >
         {zoneName}
@@ -66,14 +70,19 @@ function Ride({ name, remaining_tickets, converted_return_time, zone , selected,
           position: 'absolute',
           bottom: '5px',
           right: '5px',
-          fontSize: '12px',
+          fontSize: '13px',
           color: '#656565',
           display: 'flex',
           justifyContent: 'flex-end',
           fontFamily: 'Open Sans, sans-serif',
         }}
       >
-        {remaining_tickets}
+      <img
+            src={greyTicketLogo}
+            alt="Logo"
+            style={{ height: '16px', marginRight: '5px' }} 
+        />
+        <span>{remaining_tickets}</span>
       </div>
       <div
         className="return-time"
@@ -81,14 +90,20 @@ function Ride({ name, remaining_tickets, converted_return_time, zone , selected,
           position: 'absolute',
           bottom: '5px',
           left: '5px',
-          fontSize: '12px',
+          fontSize: '13px',
           color: '#656565',
           display: 'flex',
           justifyContent: 'flex-start',
           fontFamily: 'Open Sans, sans-serif',
         }}
       >
-        {converted_return_time}
+      <img
+            src={greyClockLogo}
+            alt="Logo"
+            style={{ height: '16px', marginRight: '5px' }} 
+        />
+        <span>{converted_return_time}</span>
+
       </div>
     </div>
   );
