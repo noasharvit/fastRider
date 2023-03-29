@@ -32,22 +32,23 @@ export default function Rides () {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     if(isValidFormat(pin)){
         postSubmition(pin, selectedRideId)
-  .then(json => setAccessCode(json.access_code))
-  .catch(error => console.error(error));
+  .then(json => {
+    setAccessCode(json.access_code);
+    setIsSubmit(true);
+    console.log("Pin: ", pin);
+    console.log("selectedRideId: "+ selectedRideId);
 
-       
-       
+})
+  .catch(error => console.error(error));
 
     }
     else{
         alert("#PIN code in invalid! ");
     }
     
-    setIsSubmit(true);
-    console.log("Pin: ", pin);
-    console.log("selectedRideId: "+ selectedRideId);
   };
   const handlePinChange = (event) => {
     setPin(event.target.value);
