@@ -8,7 +8,7 @@ import clockLogo from './logos/clockLogo.png';
 import arrowLogo from './logos/arrowLogo.png';
 import vLogo from './logos/vLogo.png';
 import { postSubmition } from './postRequest';
-import { parseRide, isValidFormat } from './stringParsingAndCoverting';
+import { parseRide, isValidFormat, isRideHasSelected } from './stringParsingAndCoverting';
 
 export default function Rides () {
   const [rides, setRides] = useState([]);
@@ -33,46 +33,38 @@ export default function Rides () {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if(isValidFormat(pin)){
+    if(isValidFormat(pin) && isRideHasSelected(selectedRideId)){
         postSubmition(pin, selectedRideId)
-  .then(json => {
-    setAccessCode(json.access_code);
-    setIsSubmit(true);
-    console.log("Pin: ", pin);
-    console.log("selectedRideId: "+ selectedRideId);
-
-})
-  .catch(error => console.error(error));
-
+        .then(json => {
+            setAccessCode(json.access_code);
+            setIsSubmit(true);
+            })
+        .catch(error => console.error(error));
     }
     else{
-        alert("#PIN code in invalid! ");
+        alert("#PIN code in invalid! or Ride hasn't been selected..");
     }
-    
   };
+
   const handlePinChange = (event) => {
-    setPin(event.target.value);
-    
+    setPin(event.target.value);  
   };
 
   function findSelectedRideById(id){
-    return rides.find( ride => ride.id == id);
+    return rides.find( ride => ride.id === id);
   } 
 
-const selectedRideObject = findSelectedRideById(selectedRideId);
+  const selectedRideObject = findSelectedRideById(selectedRideId);
 
   return (
     <div className="rides-container">
-    <h1
-    style={{
-        color: '#ffffff',
-        fontSize: '30px',
-        fontFamily: 'Open Sans, sans-serif',
-      }}>
-        The JungleTM FastRider service</h1>
-{isSubmit
-?
-<>
+    <h1 className="jungle-title ">
+        The Jungle FastRider service</h1>
+
+    {isSubmit
+    //if submit had been pressed 
+        ?
+    <>
         <Info
           src={vLogo}
           text="Thank you for using The Jungle FastRider ticket system - your access code is now ready!"
@@ -85,8 +77,9 @@ const selectedRideObject = findSelectedRideById(selectedRideId);
             />  
         
   
-</>
-        :
+    </>
+    :
+// default page 
         <>
         <div className="info-grid"  style={{ display: 'flex' }}>
         <Info
@@ -106,14 +99,7 @@ const selectedRideObject = findSelectedRideById(selectedRideId);
 
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" , marginBottom: "20px"}}>
             <form onSubmit={handleSubmit} style={{ width: "750px" }}>
-            <div
-            style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "30px",
-                marginTop: "20px"
-            }}
+            <div className="input-section"
             >
             <input
                 type="text"
@@ -122,16 +108,7 @@ const selectedRideObject = findSelectedRideById(selectedRideId);
                 style={{ width: "75%", height: "100%" }}
                 placeholder="Enter your park ticket #PIN number"
             />
-            <button
-                style={{
-                width: "25%",
-                height: "100%" ,
-                backgroundColor: "#373737",
-                color: "#ffffff",
-                borderRadius: "0 5px 5px 0",
-                border: "none",
-                cursor: "pointer"
-                }}
+            <button className="submit"
                 onClick={() => console.log("Submit clicked")}
             >
                 Submit
@@ -154,14 +131,7 @@ const selectedRideObject = findSelectedRideById(selectedRideId);
 
             </>
         } 
-
-
-
-
-
-
   </div>
   );
-  
 }
 

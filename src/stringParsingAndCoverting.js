@@ -29,3 +29,9 @@ export function parseRide(ride) {
     const regex = /^JN-\d{4}-\d{4}-[A-Z]{2}$/;
     return regex.test(str);
   }
+
+  export function isRideHasSelected (ride){
+    return ride !== null;
+  }
+    
+  
