@@ -66,8 +66,8 @@ export default function Rides () {
         ?
     <>
         <Info
-          src={vLogo}
-          text="Thank you for using The Jungle FastRider ticket system - your access code is now ready!"
+        src={vLogo}
+        text="Thank you for using The Jungle FastRider ticket system - your access code is now ready!"
         /> 
 
         <SelectedRide 
@@ -75,60 +75,57 @@ export default function Rides () {
             {...parseRide(selectedRideObject)}
             accessCode = {accessCode}
             />  
-        
-  
     </>
     :
 // default page 
+
         <>
         <div className="info-grid"  style={{ display: 'flex' }}>
-        <Info
-          src={ticketLogo}
-          text="Enter your park ticket #PIN number, then select the desire ride while noting the stated return time."
-        />
-        <Info
-          src={arrowLogo}
-          text="press 'submit' to confirm and retrieve your access code."
-        />
-        <Info
-          src={clockLogo}
-          text="when the time comes, use the special FastRider line to cut out a considerable wait time."
-        />
-      </div>
-
-
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" , marginBottom: "20px"}}>
-            <form onSubmit={handleSubmit} style={{ width: "750px" }}>
-            <div className="input-section"
-            >
-            <input
-                type="text"
-                value={pin}
-                onChange={handlePinChange}
-                style={{ width: "75%", height: "100%" }}
-                placeholder="Enter your park ticket #PIN number"
+            <Info
+            src={ticketLogo}
+            text="Enter your park ticket #PIN number, then select the desire ride while noting the stated return time."
             />
-            <button className="submit"
-                onClick={() => console.log("Submit clicked")}
-            >
-                Submit
-            </button>
-            </div>
-            </form>
-            </div>
-
-            <div className="rides-grid">
-        {rides.map(ride => (
-                <Ride 
-                key={ride.id} 
-                {...parseRide(ride)}
-                selected={selectedRideId === ride.id}
-                onSelect={() => handleRideSelect(ride.id)}
-                />        
-                ))}
-            </div>
+            <Info
+            src={arrowLogo}
+            text="press 'submit' to confirm and retrieve your access code."
+            />
+            <Info
+            src={clockLogo}
+            text="when the time comes, use the special FastRider line to cut out a considerable wait time."
+            />
+        </div>
 
 
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" , marginBottom: "20px"}}>
+        <form onSubmit={handleSubmit} style={{ width: "750px" }}>
+        <div className="input-section"
+        >
+        <input
+            type="text"
+            value={pin}
+            onChange={handlePinChange}
+            style={{ width: "75%", height: "100%" }}
+            placeholder="  #PIN"
+        />
+        <button className="submit"
+            onClick={() => console.log("Submit clicked")}
+        >
+            Submit
+        </button>
+        </div>
+        </form>
+        </div>
+
+        <div className="rides-grid">
+            {rides.map(ride => (
+                    <Ride 
+                    key={ride.id} 
+                    {...parseRide(ride)}
+                    selected={selectedRideId === ride.id}
+                    onSelect={() => handleRideSelect(ride.id)}
+                    />        
+                    ))}
+            </div>
             </>
         } 
   </div>
