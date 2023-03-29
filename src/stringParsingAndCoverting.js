@@ -1,10 +1,11 @@
 
 
 export function parseRide(ride) {
-    const { name, remaining_tickets, return_time, zone } = ride;
+    const { id: ride_id , name, remaining_tickets, return_time, zone } = ride;
     const { id, name: zoneName, color } = zone;
     const converted_return_time = convertTimeFormat(return_time);
     return {
+      id: ride_id,
       name,
       remaining_tickets,
       converted_return_time,

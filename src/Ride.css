@@ -69,6 +69,14 @@
   font-size: 1rem;
 }
 
+
+.name-when-selected {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  font-size: 1rem;
+}
+
 .remaining-tickets {
   position: absolute;
   bottom: 5%;

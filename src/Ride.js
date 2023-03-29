@@ -1,6 +1,5 @@
 import greyClockLogo from './logos/greyClockLogo.png';
 import greyTicketLogo from './logos/greyTicketLogo.png';
-import greyArrowLogo from './logos/greyArrowLogo.png';
 
 function Ride({ name, remaining_tickets, converted_return_time, zone , selected, onSelect}) {
     const { id, name: zoneName, color } = zone;
